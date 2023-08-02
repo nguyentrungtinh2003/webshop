@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPEE</title>
+    <style>
+        .header{
+            height: 110px;
+            background-image: linear-gradient(to bottom,red,orangered);
+            position: fixed;
+            top:0;
+            z-index: 4;
+            width:100%;
+        }
+        .header-navbar-list{
+            list-style: none;
+            padding-left: 0px;
+            margin-top: 6px;
+            position: relative;
+            font-size: 0.2rem;
+
+        }
+        .header-navbar-item--strong{
+            color:white;
+            font-weight: 400;
+            
+        }
+        .header-navbar-item{
+            margin: 0 8px;
+            font-size: 0.2rem;
+            position: relative;
+            
+        }
+       .header-navbar-item-has-qr:hover .header-qr{
+        display: block;
+        }
+        .header-navbar-item,.header-navbar-link{
+            display: inline-block;
+            font-size: 1.4rem;
+            
+            color:white;
+            text-decoration: none;
+            font-weight: 300;
+        }
+        .header-navbar-item:hover,.header-navbar-link:hover{
+            color:rgba(255,255,255,0.7);
+            cursor: pointer;
+
+        }
+        .header-navbar{
+            display: flex;
+            justify-content: space-between;
+           
+        }
+        /*grid */
+        .grid{
+            width:1260px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .header-navbar-item--sepa::after{
+            content: "";
+            display: block;
+            position: absolute;
+            width:1px;
+            height:16px;
+            background-color: aliceblue;
+            right:-9px;
+            top:50%;
+            transform: translateY(-50%);
+
+
+        }
+        
+        .header-qr{
+            background-color:white;
+            width:186px;
+            position: absolute;
+            left:0;
+            top:120%;
+            padding: 8px;
+            border-radius: 4px;
+            display: none;
+            animation:fadeIn ease-in 0.3s;
+            z-index: 2;
+            
+
+        }
+        .header-qr-img{
+             width: 100%;
+           
+        }
+        .header-qr::before{
+            content: "";
+            border: 20px solid;
+          
+            border-color:transparent transparent white transparent;
+            left:80px;
+            top:-30px;
+            position: absolute;
+        }
+
+        .header-qr-dl{
+             padding:5px;
+        }
+        
+         @keyframes fadeIn{
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+         }
+         .header-noti::before{
+            content: "";
+            border:20px solid;
+            border-color: transparent transparent white transparent;
+            position: absolute;
+            right:30px;
+            top:-30px;
+        }
+
+         .header-noti{position: absolute;
+            top:118%;
+            right: 0;
+            width:404px;
+            background-color: white;
+            border: 1px solid #D3D3D3;
+            cursor: pointer;
+           display: none;
+           border-radius: 4px;
+           z-index: 2;
+         }
+         .header-navbar-item-tb:hover .header-noti{
+            display: block;
+         }
+
+         .header-noti-header{
+           height: 40px;
+           background-color: white;
+
+         }
+         .header-noti-header h3{
+            line-height: 40px;
+            color:#999;
+            margin:0 0 0 12px;
+            font-weight: 400;
+            font-size: 1.4rem;
+         }
+
+         .header-noti-item{
+            display: flex;
+
+         }
+         .header-noti-item:hover{
+            background-color: #f7f7f7;
+         }
+
+        
+
+         .header-noti-link{
+            width: 100%;
+            display: flex;
+            padding-left: 0;
+            text-decoration: none;
+            background-color: rgba(236, 127, 105, 0.1);
+
+         }
+
+         .header-noti-list{
+          
+            padding-left: 0px;
+         }
+
+         .header-noti-name{font-size: 1.4rem;
+            color:black;
+         }
+
+         .header-noti-dec{font-size: 1.2rem;
+            color:rgba(0,0,0,0.5);
+            line-height: 0.1rem;
+
+         }
+         .header-noti-img{
+            width:60px;
+            height: 60px;
+          
+         }
+         .header-noti-info{
+            margin-top: -16px;
+        
+         }
+         .header-noti-btn{
+            color:black
+         }
+         .header-noti-btn-i{
+            color:black;
+            text-decoration: none;
+            padding: 4px 120px;
+            
+         }
+         .bell{
+             border-radius: 50%;
+         }
+         .face{
+            border-radius: 50%;
+         }
+         .inta{
+            border-radius: 50%;
+         }
+      /* .modal{
+        position: relative;
+        position: fixed;
+        top:0;
+        right:0;
+        left:0;
+        bottom:0;
+        animation: fadeIn linear 0.1s;
+        display: flex;
+        display: none;
+        
+       }
+      
+       .modal-overlay{
+        position: absolute;
+        width:100%;
+        height:100%;
+        position: relative;
+        background-color: rgba(0,0,0,0.4);
+    
+    
+       }*/
+       .modal-body{
+       
+        position:absolute;
+        width:270px;
+        height: 450px;
+        background-color:white;
+        display:none;
+        border-radius:5px;
+        color:black;
+        font-size: 0.8rem;
+        z-index: 3;
+        border: 2px solid;
+        border-color: rgb(10, 10, 202);
+        
+       }
+       .modal-body2{
+       
+       position:absolute;
+       width:273px;
+       height: 450px;
+       margin-right: 200px;
+       background-color:white;
+       display:none;
+       border-radius:5px;
+       color:black;
+       font-size: 0.8rem;
+       z-index: 2;
+       border: 2px solid;
+       border-color: rgb(10, 10, 202);
+      
+      }
+      .header-navbar-item--strong-tb2{
+        position: relative;
+
+      }
+      .header-navbar-item--strong-tb2:hover .modal-body2{
+        display: block;
+      }
+      .modal-body2::before{
+        content: "";
+        position: absolute;
+        border:10px solid;
+        top:-19px;
+        border-color:transparent transparent rgb(10, 10, 202) transparent;
+        left:20px;
+      }
+       .modal-body::before{
+        content:"";
+        border: 10px solid;
+        border-color: transparent transparent rgb(10, 10, 202) transparent;
+        left:20px;
+        top:-19px;
+        position: absolute;
+       
+       }
+       .header-navbar-item--strong-tb{
+        position: relative;
+       }
+       
+      .header-navbar-item--strong-tb:hover .modal-body{
+
+           display: block;
+      }
+       .modal-inner{
+        padding: 0 32px;
+
+       }
+       .auth-form-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+       }
+       .auth-form-heading{
+        font-size: 1.4rem;
+        font-weight: 400;
+        color:black;
+
+       }
+       .auth-form-switch-btn{
+        font-size: 1rem;
+        color:rgb(186, 49, 49);
+        font-weight: 400;
+        cursor: pointer;
+        border-color: #f7f7f7;
+        background-color:white;
+        
+       }
+        .auth-form-form{
+            margin-top: 16px;
+            
+        }
+       
+        .auth-form-input{
+            width:100%;
+            height: 40px;
+            margin: 10px 0;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: solid 3px;
+            
+        }
+        .auth-form-input:hover {
+        
+            border-color: rgb(10, 10, 202);
+            
+        }
+       
+        .auth-form-poli-list{
+           text-decoration: none;
+           color:orangered;
+
+        }
+        .auth-form-contro{padding-left: 35px;
+            margin: 0 10px;
+            align-items: center;
+            
+        }
+      .auth-form-contro2{
+            padding-left:35px ;
+            margin:0 10px;
+            align-items: center;
+        }
+        .auth-form-contro-btn{margin: 0 0px;
+            
+          
+        }
+        .auth-form-btn{
+            background-color:white;
+            color:rgb(9, 8, 8);
+            border-color: #f7f7f7;
+            cursor: pointer;
+            width:60px;
+            height:30px;
+            font-size: 0.5rem;
+            border-radius: 6px;
+
+        }
+        .auth-form-btn2{
+            width:60px;
+            height:30px;
+            background-color: red;
+            color:white;
+            border-color: white;
+            cursor: pointer;
+            font-size: 0.5rem;
+            border-radius: 6px;
+            
+        }
+        .auth-form-social{margin:10px;
+            display: flex;
+            text-align: center;
+            margin-left: 0px;
+
+        }
+        .btn-icon{padding:2px 0px
+
+        }
+        .btn{text-decoration: none;
+            color:white;
+            
+
+        }
+        .btn2{
+           text-decoration: none;
+           color:black;
+        }
+       
+        .btnall{
+            width:200px;
+            background-color:rgb(7, 7, 214) ;
+            color:white;
+            border-radius: 5px;
+            align-items: center;
+            margin-left:10px;;
+        }
+        .btnall2{
+            width:200px;
+            background-color: rgb(245, 238, 238);
+            padding: 0 10px;
+            border-radius: 10px;
+            align-items: center;
+        }
+        .logosearch{
+            display:flex;
+        }
+        .mot{padding-bottom: 20px;
+        }
+        .search{
+            width:600px;
+            height:35px;
+            border-radius: 6px;
+            border-bottom: #f7f7f7;
+            border-color: white;
+        }
+        .btnn{
+            height:35px;
+            border-radius: 3px;
+            width:70px;
+            background-color:red;
+            color:rgb(252, 251, 251);
+            border-radius: 6px;
+            border-color: white;
+        }
+        .quenmatkhau{
+            text-decoration: none;
+        }
+       .ba{position: relative;
+
+       }
+       .ba:hover .nosp{
+        display: block;
+       }
+       .nosp{position: relative;
+        background-color:white;
+        width:50px;
+        z-index: 1;
+        display: none;
+        border-radius: 4px;
+        margin-top: 10px;
+        margin-right: 10px;
+       }
+       .nosp::before{
+        position: absolute;
+        content: "";
+        border: 20px solid;
+        border-color: transparent transparent white transparent;
+        left:10px;
+        top:-25px;
+       }
+        .cart{
+            border-radius: 50%;
+        }
+       .kosp{width:200px;
+         
+       }
+       
+       .item{font-size:xx-small;
+        position: absolute;
+        margin-top: 10px;
+        position: fixed;
+        right:10px;
+        width:40px;
+        height:40px;
+        background-color:rgb(250, 248, 248);
+        border:3px solid;
+        border-color: rgb(246, 242, 242);
+        color:white;
+        position: relative;
+        display: none;
+        z-index: 3;
+
+       }
+       .item::before{
+        content: "";
+        position: absolute;
+        border: 15px solid;
+        border-color: transparent transparent white transparent;
+        top:-25px
+
+       }
+       
+       
+       .login{position: relative;
+        position: fixed;
+        right:190px;
+       }
+       .login:hover .item{
+        display: block;
+       }
+       .logout{
+        text-decoration: none;
+        color:black;
+       }
+       .user1{
+        border-radius: 50%;
+       }
+
+       .grid-full-width{
+        width:100%;
+       }
+       /* grid*/
+
+       .grid-row{
+
+        display:flex;
+        flex-wrap: wrap;
+        margin-left: 5px;
+       margin-right: 5px;
+      
+       }
+       .listicon{
+        width:20px;
+       }
+       /* test */
+       .grid-colum-2{
+        margin-top: 10px;
+        width:20%;
+       
+       }
+       .grid-colum-2-4{
+        display: flex;
+        width: 180px;
+        padding-top: 18px;
+        margin-left: 3px;
+       margin-right: 3px;
+        
+    }
+       .grid-colum-10{
+        width:80%;
+      
+
+       }
+      
+       
+       .app-container{
+        background-color: #f5f5f5;
+        margin-top: 100px;
+       }
+       .app-content{
+           padding: 30px;
+
+       }
+      .categary{
+        border-radius: 2px;
+        background-color: white;
+       }
+       .categary-header{
+        margin-top: 0;
+        font-size: 1.7rem;
+        color:black;
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+       }
+       .categary-list{
+        padding: 0 0 8px 0;
+        list-style:none;
+        margin-left: 9px;
+        font-size: 0.7rem;
+       }
+       .categary-item-active  .categary-item-link{
+        color:red;
+       }
+       .categary-item-active  .categary-item-link::before{
+        position: absolute;
+        top:40%;
+        left:7px;
+        content: "";
+        border: 4px solid;
+        transform: translateY(calc(40%-1px));
+        border-color: transparent transparent transparent red;
+       }
+       .categary-item-link{
+        position: relative;
+        font-size: 1.2rem;
+        text-decoration:none ;
+        color:black;
+        padding: 4px 16px ;
+        display: block;
+        transition: right linear 0.1s;
+        right:0;
+       }
+       .categary-item-link:hover{
+        right:-4px;
+        color:red;
+       }
+       /*home*/
+
+       .btn3{
+        min-width:124px;
+        height:34px;
+        border: none;
+        border-radius: 2px;
+        font-size: 1.rem;
+        padding: 0 12px;
+        outline:none;
+        cursor: pointer;
+        color:black;
+        background-color: white;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.6rem;
+       }
+       .gia{position: relative;
+
+       }
+       .gia:hover .giacaothap{
+        display: block;
+       }
+       .giacaothap::before{
+        position: absolute;
+        content: "";
+        border: 10px solid;
+        border-color: transparent transparent red transparent;
+        margin-left: 52px;
+        margin-top: -20px;
+    
+    }
+       .giacaothap{
+        width:122px;
+        height:50px;
+        background-color:red;
+        border-radius: 5px;
+        position: absolute;
+        display: none;
+        margin-top: 8px;
+        z-index: 2;
+        
+       }
+       .giacao{
+            text-decoration: none;
+            color:white;
+       }
+       .giathap{
+        text-decoration: none;
+        color:white;
+       }
+       
+       .btn-btn{
+        min-width:124px;
+        height:34px;
+        border: none;
+        border-radius: 2px;
+        font-size: 1.rem;
+        padding: 0 12px;
+        outline:none;
+        cursor: pointer;
+        color:rgb(252, 248, 248);
+        background-color: red;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.6rem;
+
+       }
+      
+       
+       .home-fil{
+        align-items: center;
+        display: flex;
+        margin-left: 5px;
+        border-radius: 2px;
+        background-color: rgba(0,0,0,0.04);
+        margin-top: 10px;
+       width: 100%;
+        
+        
+       
+       }
+       
+       
+       .home-fil-label{
+        color:#555555;
+        font-size: 1rem;
+        margin-right: 10px;
+
+       
+       }
+       .home-fil-btn{
+        margin-right: 12px;
+        min-width: 90px;
+        
+       }
+      .home-fil-page{
+        margin-left: auto;
+      }
+       .home-fil-page-1{
+        color:red;
+       }
+      .home-product-item{position: relative;
+        background-color: white;
+        
+      }
+      .home-product-item-name{
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.4rem;
+        margin: 5px 5px 5px 4px;
+        overflow: hidden;
+        display: block;
+
+
+      }
+      
+      .home-product-item-giacu{
+        font-size: 0.8rem;
+        color:#2d2b2b66;
+        text-decoration: line-through;
+        
+      }
+      .home-product-item-giamoi{
+        font-size: 1rem;
+        color:red;
+      }
+      .home-product-item-action{
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 5px;
+      }
+      .home-product-item-like{
+         
+      }
+      .home-product-item-rating{
+        font-size: 0.4rem;
+      }
+      .home-product-item-hold{
+        display: flex;
+        justify-content: space-between;
+        margin: 0px 5px;
+        font-weight: 300;
+      }
+      .home-product-item-hieu{
+
+      }
+      .sale-all{
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top:-10px;
+       
+
+
+      }
+      .giam{
+
+      }
+      .giam2{
+
+      }
+      .home-product-item-favo{
+         background-color: red;
+         width:80px;
+         height:20px;
+         color:white;
+         position: relative;
+        
+      }
+      .home-product-item-favo::after{
+        content: "";
+        position: absolute;
+        border: 10px solid;
+        border-color: red white red red;
+       
+      }
+      .home-product-item-sale{
+        position: relative;
+         background-color: yellow;
+         width:80px;
+         height:20px;
+         color:red;
+        
+      }
+      .home-product-item-sale::after{
+        content: "";
+        position: absolute;
+        border: 10px solid;
+        border-color:yellow white yellow yellow;
+      }
+     .home-product{
+        background-color: white;
+     }
+      /*page*/
+      .pagewed{
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         list-style: none;
+      }
+      .pagewed-item{
+        margin: 0 8px;
+      }
+     .pagewed-item-1 .pagewed-item-link{
+        background-color: red;
+        color:white;
+      }  
+      .pagewed-item-1 .pagewed-item-link:hover{
+        background-color: #ed5c3f;
+      }
+      .pagewed-item-link{text-decoration: none;
+        font-size: 1.5rem;
+        color:#939393;
+        min-width: 40px;
+        height:30px;
+        display: block;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 2px;
+        font-weight: 300;
+      }
+      
+      .home-product-pagewed{
+        margin-top: 48px;
+        margin-bottom: 32px;
+      }
+      .product-link{
+        text-decoration: none;
+        color:black;
+      }
+      /*footer*/
+      .footer-qr-app{
+        display: flex;
+        width:100px
+      }
+      .footer-heading{
+         font-size: 1rem;
+         font-weight: 400;
+         margin-left: 38px;
+      
+      }
+      .footer-list{
+        list-style: none;
+       
+      }
+      .footer-item{
+       
+      }
+      .footer-item-link{
+        text-decoration: none;
+        color:rgb(126, 117, 117);
+      
+      }
+      .footer-border{
+        position: relative;
+      }
+      .footer-border::before{
+        content: "";
+        position: absolute;
+        height:2px;
+        width:100%;
+        background-color: red;
+      }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <div class="grid">
+                <nav class="header-navbar">
+                    <ul class="header-navbar-list">
+                        <li class="header-navbar-item header-navbar-item-has-qr header-navbar-item--sepa ">Vào cửa hàng trên ứng dụng Shopee
+                            <div class="header-qr">
+                                <img src="./sass/images/qr shopee.png" alt="" class="header-qr-img">
+                                <div class="header-qr-app">
+                                    <img src="./sass/images/google play.png" alt="" class="header-qr-dl"width="80px">
+                                    <img src="./sass/images/appstore.png" alt="" class="header-qr-dl"width="80px">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="header-navbar-item ">Kết nối
+                            <a href="" class="facebook">
+                            <img src="./sass/images/logo face.png"class="face"width="20px">
+                            </a>
+                            <a href="" class="intagram">
+                            <img src="./sass/images/logo intagram.jpg"class="inta"width="20px">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="header-navbar-list">
+                        <li class="header-navbar-item header-navbar-item-tb"><a href="" class="header-navbar-link">
+                            <img src="./sass/images/bell2.png"class="bell"width="20px">Thông báo</a>
+                            <div class="header-noti">
+                                <haeder class="header-noti-header">
+                                    <h3>Thông báo mới nhận</h3>
+                                </haeder>
+                                <ul class="header-noti-list">
+                                    <li class="header-noti-item header-noti-item-read">
+                                        <a href="" class="header-noti-link">
+                                            <img src="./sass/images/ao thun co co.jpg"width="30px" alt="" class="header-noti-img">
+                                        
+                                   
+                                            <div class="header-noti-info">
+                                                <p class="header-noti-name">Áo thun có cổ nam</p>
+                                                <p class="header-noti-dec">Áo thun nam chính hãng</p>
+                                            </div>
+                                        </a>
+                                    <li class="header-noti-item header-noti-item-read">
+                                            <a href="" class="header-noti-link">
+                                                <img src="./sass/images/giay da nam.jpg"width="30px" alt="" class="header-noti-img">
+                                            
+                                       
+                                                <div class="header-noti-info">
+                                                    <p class="header-noti-name">Giày da nam mới</p>
+                                                    <p class="header-noti-dec">Giày da sang trọng</p>
+                                                </div>
+                                            </a>
+                                    <li class="header-noti-item header-noti-item-read">
+                                                <a href="" class="header-noti-link">
+                                                    <img src="./sass/images/giay sneaker.jpg"width="30px" alt="" class="header-noti-img">
+                                                
+                                           
+                                                    <div class="header-noti-info">
+                                                        <p class="header-noti-name">Giày Sneaker bền đẹp</p>
+                                                        <p class="header-noti-dec">Giày nhiều mẫu đẹp</p>
+                                                    </div>
+                                                </a>
+                                    <li class="header-noti-item header-noti-item-read">
+                                                    <a href="" class="header-noti-link">
+                                                        <img src="./sass/images/non ket mau.jpg"width="30px" alt="" class="header-noti-img">
+                                                    
+                                               
+                                                        <div class="header-noti-info">
+                                                            <p class="header-noti-name">Nón kết màu mới</p>
+                                                            <p class="header-noti-dec">Nón có nhiều màu lựa chọn</p>
+                                                        </div>
+                                                    </a>
+            
+        
+
+                                        
+                                        
+                                    
+                                        
+                                        
+                                    
+                                </ul>
+                                <div class="header-noti-btn">
+                                    <a href="" class="header-noti-btn-i">Xem tất cả</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="header-navbar-item header-navbar-item--strong-tb">Đăng ký
+                            <div class="modal-body">
+                                <div class="modal-inner">
+                
+                                    <div class="auth-form">
+                                        <div class="auth-form-header">
+                                            <h3 class="auth-form-heading ">Đăng ký</h3>
+                                            <span class="auth-form-switch-btn">Đăng nhập</span>
+                                        </div>
+                                        <div class="auth-form-form">
+                                            <div class="auth-form-group">
+                                                <input type="text" class="auth-form-input"placeholder=" Nhập Số điện thoại của bạn">
+                                            </div>
+                                            <div class="auth-form-group">
+                                                <input type="password" class="auth-form-input"placeholder=" Nhập Password của bạn">
+                                            </div>
+                                            <div class="auth-form-group">
+                                                <input type="password" class="auth-form-input"placeholder=" Nhập lại Password ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="auth-form-aside">
+                                            <p class="auth-form-poli">Bằng việc đăng ký ,bạn đã đồng ý với Shopee về <a href="" class="auth-form-poli-list">Điều khoản dịch vụ</a> & <a href="" class="auth-form-poli-list">Chính sách bảo mật</a></p>
+                                        </div>
+                                        
+                                    
+                                    <div class="auth-form-contro">
+                                        <button class="auth-form-btn">Trở lại</button>
+                                        <button class="auth-form-btn2">Đăng ký</button>
+                                    </div>
+                                    <div class="auth-form-social">
+                                        <div class="btnall">
+                                             <img src="./sass/images/logo face.png"width="15px" alt="" class="btn-icon">
+                                              <a href="" class="btn"> Kết nối với Facebook</a>
+                                        </div>
+                                        <div class="btnall2">
+                
+                                              <img src="./sass/images/logo google.png"width="15px  " alt="" class="btn-icon">
+                                    
+                                              <a href="" class="btn2 "> Kết nối với Google</a>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                
+                                  
+                        </li>
+                        <li class="header-navbar-item"><a href="" class="header-navbar-link">Trợ giúp</a></li>
+                       
+                       
+                     
+                        
+                    </ul>
+    
+                </nav>
+                <div class="logosearch">
+                    <ul class="mot">
+                    <img src="./sass/images/shoppe3.jpg"width="110px" alt="" class="logo">
+                    </ul>
+                    <ul class="hai">
+                    <input type="search"placeholder="    Search" class="search">
+                    <button class="btnn">Tìm kiếm</button>
+                    </ul>
+                    <ul class="ba">
+                    <img src="./sass/images/gio hang.jpg"width="30px" alt="" class="cart">
+                    <div class="nosp">
+                        <img src="./sass/images/hinh ko san pham.png"width="50px" alt="" class="kosp">
+                    </div>
+
+                    </ul>
+                    <ul>
+                        <li class="header-navbar-item header-navbar-item--strong header-navbar-item--strong-tb2">Đăng nhập
+                            <div class="modal-body2">
+                                <div class="modal-inner">
+                
+                                    <div class="auth-form">
+                                        <div class="auth-form-header">
+                                            <h3 class="auth-form-heading ">Đăng nhập</h3>
+                                            <span class="auth-form-switch-btn">Đăng ký</span>
+                                        </div>
+                                        <div class="auth-form-form">
+                                            <div class="auth-form-group">
+                                                <input type="text" class="auth-form-input"placeholder=" Nhập tên của bạn">
+                                            </div>
+                                            <div class="auth-form-group">
+                                                <input type="password" class="auth-form-input"placeholder=" Nhập Password của bạn">
+                                            </div>
+                                            <div class="auth-form-group">
+                                                <input type="password" class="auth-form-input"placeholder=" Nhập lại Password ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="auth-form-aside">
+                                            <p class="auth-form-poli"><a href="" class="quenmatkhau">Quên mật khẩu ?</a></p>
+                                        </div>
+                                        
+                                    
+                                    <div class="auth-form-contro2">
+                                        <button class="auth-form-btn">Trở lại</button>
+                                        <button class="auth-form-btn2">Đăng nhập</button>
+                                    </div>
+                                    <div class="auth-form-social">
+                                        <div class="btnall">
+                                             <img src="./sass/images/logo face.png"width="15px" alt="" class="btn-icon">
+                                              <a href="" class="btn"> Kết nối với Facebook</a>
+                                        </div>
+                                        <div class="btnall2">
+                
+                                              <img src="./sass/images/logo google.png"width="15px  " alt="" class="btn-icon">
+                                    
+                                              <a href="" class="btn2 "> Kết nối với Google</a>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                
+                                    
+                                          
+
+
+
+                           
+
+                        </li>
+                       
+                    </ul>
+                    <ul class="login">
+                        <div class="user">
+                            <img src="./sass/images/logo cua toi 2.jpg"width="30px" alt="" class="user1">
+                        </div>
+                            
+                        <div class="item">
+                            <img src="./sass/images/thoat.png"width="20px"><a href="" class="logout">Logout</a>
+                                      
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        <div class="app-container">
+            <div class="grid">
+                <div class="grid-row app-content">
+                    <div class="grid-colum-2">
+                        <nav class="categary">
+                
+                
+                
+                            <h3 class="categary-header">
+                                <img src="./sass/images/list.png" alt="" class="listicon"> Danh mục</h3>
+                    
+                            <ul class="categary-list">
+                                <li class="categary-item categary-item-active">
+                                <a href="#" class="categary-item-link">Thời trang nam</a>
+                                </li>
+                                <li class="categary-item">
+                                <a href="#" class="categary-item-link">Thời trang nữ</a>
+                                </li>
+                                <li class="categary-item">
+                                <a href="#" class="categary-item-link">Trang trí nội thất</a>
+                                </li>
+                                <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Điện gia dụng</a>
+                                </li>
+                                <li class="categary-item">
+                                        <a href="#" class="categary-item-link">Sắc đẹp</a>
+                                </li>
+                                <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Sức khỏe</a>
+                                </li>
+                                <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Đồng hồ</a>
+                                </li>
+                                <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Mẹ & Bé</a>
+                                 </li>
+                                 <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Nhà cửa & Đời sống</a>
+                                 </li>
+                                 <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Thiết bị điện tử</a>
+                                 </li>
+                                 <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Máy tính & Laptop</a>
+                                 </li>
+                                 <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Máy ảnh & Máy quay phim</a>
+                                 </li>
+                                 <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Giày dép nữ</a>
+                                 </li>
+                                 <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Giày dép nam</a>
+                                 </li>
+                                 <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Túi ví nữ</a>
+                                 </li>
+                                 <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Thể thao & Du lịch</a>
+                                 </li>
+                                 <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Nhà sách Online</a>
+                                 </li>
+                                 <li class="categary-item">
+                                    <a href="#" class="categary-item-link">Ô tô & Xe máy & Xe đạp</a>
+                                 </li>
+                                 
+                            </ul>
+    
+    
+                        </nav>
+                    </div>
+                    <div class="grid-colum-10 space-between">
+                            <div class="home-fil">
+                                
+                                <span class="home-fil-label">Sắp xếp theo</span>
+                                <button class="home-fil-btn btn3">Phổ biến</button>
+                                <button class="home-fil-btn btn btn-btn">Mới nhất</button>
+                                <button class="home-fil-btn btn3">Bán chạy</button>
+                                <div class="gia">
+                                     <button class="btn3">Giá</button>
+                                        <div class="giacaothap">
+
+                                          <a href="#" class="giacao"> Giá cao đến thấp</a>
+
+                                           <a href="#" class="giathap"> Giá thấp đến cao</a>
+
+                                        </div>
+                                </div>
+                                <div class="home-fil-page ">
+                                    <span class="home-fil-page-num">
+                                        <span class="home-fil-page-1">1</span>
+                                         /
+                                         14
+                                    </span>
+      
+                                    <div class="home-fil-page-control">
+                                             <a href="" class="button-left">
+                                             
+                                              <img src="./sass/images/button-left.png"width="16px" alt="" class="btn-left">
+                                            </a>
+                                            <a href="" class="button-right"> 
+                                             
+                                             <img src="./sass/images/button-right.png"width="14px" alt="" class="button-right">
+                                             </a>   
+                                          
+      
+                                    </div>
+      
+                                </div>
+
+                                
+                                   
+                             
+                                         
+                            </div>
+                           
+                           <div class="home-product">
+                               <div class="grid-row">
+                                    <a href="#" class="product-link">
+                                        <div class="grid-colum-2-4">
+                               
+                                    <div class="home-product-item">
+                                        <img src="./sass/images/ao thun o co 2.jpg"width="180px"height="180px" alt="" class="home-ppproduct-item-img">
+                                        <h4 class="home-product-item-name">Áo thun nam có cổ  </h4>
+                                        <div class="home-product-item-gia">
+                                                <span class="home-product-item-giacu">450 000đ</span>
+                                                <span class="home-product-item-giamoi">405 000đ</span>
+                                        </div>
+                                        <div class="home-product-item-action">
+                                                <span class="home-product-item-like">
+                                                    <img src="./sass/images/heart.png"width="10px">
+                                                </span>
+                                                <div class="home-product-item-rating">
+                                                    <img src="./sass/images/star.png"width="10px">
+                                                    <img src="./sass/images/star.png"width="10px">
+                                                    <img src="./sass/images/star.png"width="10px">
+                                                    <img src="./sass/images/star.png"width="10px">
+                                                    <img src="./sass/images/star.png"width="10px">
+                                                </div>
+
+                                        </div>
+                                        <div class="home-product-item-hold">
+                                                
+                                                <span class="home-product-item-hieu">Polo</span>
+                                                
+                                                <span class="home-product-item-hieu">Hàn quốc</span>
+                                                
+                                        </div>
+                                        <div class="sale-all">
+                                                <div class="home-product-item-favo">
+                                                       Yêu thích
+                                                </div>
+                                                <div class="home-product-item-sale">
+                                                     <span class="giam">10%</span>
+                                                      <span class="giam2">GIẢM</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        </div>
+                                    </a>
+                                    <a href="" class="product-link">
+                                    <div class="grid-colum-2-4">
+                               
+                                        <div class="home-product-item">
+                                            <img src="./sass/images/giay sneaker.jpg"width="180px"height="180px" alt="" class="home-ppproduct-item-img">
+                                            <h4 class="home-product-item-name">Giày sneaker  </h4>
+                                            <div class="home-product-item-gia">
+                                                    <span class="home-product-item-giacu">650 000đ</span>
+                                                    <span class="home-product-item-giamoi">585 000đ</span>
+                                            </div>
+                                            <div class="home-product-item-action">
+                                                    <span class="home-product-item-like">
+                                                        <img src="./sass/images/heart.png"width="10px">
+                                                    </span>
+                                                    <div class="home-product-item-rating">
+                                                        <img src="./sass/images/star.png"width="10px">
+                                                        <img src="./sass/images/star.png"width="10px">
+                                                        <img src="./sass/images/star.png"width="10px">
+                                                        <img src="./sass/images/star.png"width="10px">
+                                                        <img src="./sass/images/star.png"width="10px">
+                                                    </div>
+    
+                                            </div>
+                                            <div class="home-product-item-hold">
+                                                    
+                                                    <span class="home-product-item-hieu">Sneaker</span>
+                                                    
+                                                    <span class="home-product-item-hieu">Japan</span>
+                                                    
+                                            </div>
+                                            <div class="sale-all">
+                                                    <div class="home-product-item-favo">
+                                                           Yêu thích
+                                                    </div>
+                                                    <div class="home-product-item-sale">
+                                                         <span class="giam">10%</span>
+                                                          <span class="giam2">GIẢM</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </a>
+                                    <a href="" class="product-link">
+                                        <div class="grid-colum-2-4">
+                               
+                                            <div class="home-product-item">
+                                                <img src="./sass/images/non ket travel.jpg"width="180px"height="180px" alt="" class="home-ppproduct-item-img">
+                                                <h4 class="home-product-item-name">Nón kết travel  </h4>
+                                                <div class="home-product-item-gia">
+                                                        <span class="home-product-item-giacu">160 000đ</span>
+                                                        <span class="home-product-item-giamoi">144 000đ</span>
+                                                </div>
+                                                <div class="home-product-item-action">
+                                                        <span class="home-product-item-like">
+                                                            <img src="./sass/images/heart.png"width="10px">
+                                                        </span>
+                                                        <div class="home-product-item-rating">
+                                                            <img src="./sass/images/star.png"width="10px">
+                                                            <img src="./sass/images/star.png"width="10px">
+                                                            <img src="./sass/images/star.png"width="10px">
+                                                            <img src="./sass/images/star.png"width="10px">
+                                                            <img src="./sass/images/star.png"width="10px">
+                                                        </div>
+        
+                                                </div>
+                                                <div class="home-product-item-hold">
+                                                        
+                                                        <span class="home-product-item-hieu">Travel</span>
+                                                        
+                                                        <span class="home-product-item-hieu">Việt Nam</span>
+                                                        
+                                                </div>
+                                                <div class="sale-all">
+                                                        <div class="home-product-item-favo">
+                                                               Yêu thích
+                                                        </div>
+                                                        <div class="home-product-item-sale">
+                                                             <span class="giam">10%</span>
+                                                              <span class="giam2">GIẢM</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                    </a>
+                                    <a href="" class="product-link">
+                                            <div class="grid-colum-2-4">
+                               
+                                                <div class="home-product-item">
+                                                    <img src="./sass/images/quan jean.jpg"width="180px"height="180px" alt="" class="home-ppproduct-item-img">
+                                                    <h4 class="home-product-item-name">Quần jean nam  </h4>
+                                                    <div class="home-product-item-gia">
+                                                            <span class="home-product-item-giacu">500 000đ</span>
+                                                            <span class="home-product-item-giamoi">450 000đ</span>
+                                                    </div>
+                                                    <div class="home-product-item-action">
+                                                            <span class="home-product-item-like">
+                                                                <img src="./sass/images/heart.png"width="10px">
+                                                            </span>
+                                                            <div class="home-product-item-rating">
+                                                                <img src="./sass/images/star.png"width="10px">
+                                                                <img src="./sass/images/star.png"width="10px">
+                                                                <img src="./sass/images/star.png"width="10px">
+                                                                <img src="./sass/images/star.png"width="10px">
+                                                                <img src="./sass/images/star.png"width="10px">
+                                                            </div>
+            
+                                                    </div>
+                                                    <div class="home-product-item-hold">
+                                                            
+                                                            <span class="home-product-item-hieu">Jean</span>
+                                                            
+                                                            <span class="home-product-item-hieu">USA</span>
+                                                            
+                                                    </div>
+                                                    <div class="sale-all">
+                                                            <div class="home-product-item-favo">
+                                                                   Yêu thích
+                                                            </div>
+                                                            <div class="home-product-item-sale">
+                                                                 <span class="giam">10%</span>
+                                                                  <span class="giam2">GIẢM</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                    </a>
+                                    <a href="" class="product-link">
+                                                <div class="grid-colum-2-4">
+                               
+                                                    <div class="home-product-item">
+                                                        <img src="./sass/images/sua tam goi cetaphil.jpg"width="180px"height="180px" alt="" class="home-ppproduct-item-img">
+                                                        <h4 class="home-product-item-name">Sữa tắm gội cho bé </h4>
+                                                        <div class="home-product-item-gia">
+                                                                <span class="home-product-item-giacu">120 000đ</span>
+                                                                <span class="home-product-item-giamoi">108 000đ</span>
+                                                        </div>
+                                                        <div class="home-product-item-action">
+                                                                <span class="home-product-item-like">
+                                                                    <img src="./sass/images/heart.png"width="10px">
+                                                                </span>
+                                                                <div class="home-product-item-rating">
+                                                                    <img src="./sass/images/star.png"width="10px">
+                                                                    <img src="./sass/images/star.png"width="10px">
+                                                                    <img src="./sass/images/star.png"width="10px">
+                                                                    <img src="./sass/images/star.png"width="10px">
+                                                                    <img src="./sass/images/star.png"width="10px">
+                                                                </div>
+                
+                                                        </div>
+                                                        <div class="home-product-item-hold">
+                                                                
+                                                                <span class="home-product-item-hieu">Cetaphil</span>
+                                                                
+                                                                <span class="home-product-item-hieu">Canada</span>
+                                                                
+                                                        </div>
+                                                        <div class="sale-all">
+                                                                <div class="home-product-item-favo">
+                                                                       Yêu thích
+                                                                </div>
+                                                                <div class="home-product-item-sale">
+                                                                     <span class="giam">10%</span>
+                                                                      <span class="giam2">GIẢM</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                    </a>
+                                    <a href="" class="product-link">
+                                                    <div class="grid-colum-2-4">
+                               
+                                                        <div class="home-product-item">
+                                                            <img src="./sass/images/noi com dien supor.jpg"width="180px"height="180px" alt="" class="home-ppproduct-item-img">
+                                                            <h4 class="home-product-item-name">Nồi cơm điện supor  </h4>
+                                                            <div class="home-product-item-gia">
+                                                                    <span class="home-product-item-giacu">1 790 000đ</span>
+                                                                    <span class="home-product-item-giamoi">1 611 000đ</span>
+                                                            </div>
+                                                            <div class="home-product-item-action">
+                                                                    <span class="home-product-item-like">
+                                                                        <img src="./sass/images/heart.png"width="10px">
+                                                                    </span>
+                                                                    <div class="home-product-item-rating">
+                                                                        <img src="./sass/images/star.png"width="10px">
+                                                                        <img src="./sass/images/star.png"width="10px">
+                                                                        <img src="./sass/images/star.png"width="10px">
+                                                                        <img src="./sass/images/star.png"width="10px">
+                                                                        <img src="./sass/images/star.png"width="10px">
+                                                                    </div>
+                    
+                                                            </div>
+                                                            <div class="home-product-item-hold">
+                                                                    
+                                                                    <span class="home-product-item-hieu">Sunhouse</span>
+                                                                    
+                                                                    <span class="home-product-item-hieu">Korea</span>
+                                                                    
+                                                            </div>
+                                                            <div class="sale-all">
+                                                                    <div class="home-product-item-favo">
+                                                                           Yêu thích
+                                                                    </div>
+                                                                    <div class="home-product-item-sale">
+                                                                         <span class="giam">10%</span>
+                                                                          <span class="giam2">GIẢM</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                    </a>
+                                    <a href="" class="product-link">
+                                                        <div class="grid-colum-2-4">
+                               
+                                                            <div class="home-product-item">
+                                                                <img src="./sass/images/may tap the duc da nang.webp"width="180px"height="180px" alt="" class="home-ppproduct-item-img">
+                                                                <h4 class="home-product-item-name">Máy tập thể dục   </h4>
+                                                                <div class="home-product-item-gia">
+                                                                        <span class="home-product-item-giacu">2 200 000đ</span>
+                                                                        <span class="home-product-item-giamoi">1 980 000đ</span>
+                                                                </div>
+                                                                <div class="home-product-item-action">
+                                                                        <span class="home-product-item-like">
+                                                                            <img src="./sass/images/heart.png"width="10px">
+                                                                        </span>
+                                                                        <div class="home-product-item-rating">
+                                                                            <img src="./sass/images/star.png"width="10px">
+                                                                            <img src="./sass/images/star.png"width="10px">
+                                                                            <img src="./sass/images/star.png"width="10px">
+                                                                            <img src="./sass/images/star.png"width="10px">
+                                                                            <img src="./sass/images/star.png"width="10px">
+                                                                        </div>
+                        
+                                                                </div>
+                                                                <div class="home-product-item-hold">
+                                                                        
+                                                                        <span class="home-product-item-hieu">Sport</span>
+                                                                        
+                                                                        <span class="home-product-item-hieu">China</span>
+                                                                        
+                                                                </div>
+                                                                <div class="sale-all">
+                                                                        <div class="home-product-item-favo">
+                                                                               Yêu thích
+                                                                        </div>
+                                                                        <div class="home-product-item-sale">
+                                                                             <span class="giam">10%</span>
+                                                                              <span class="giam2">GIẢM</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                    </a>
+                                    <a href="" class="product-link">
+                                                            <div class="grid-colum-2-4">
+                               
+                                                                <div class="home-product-item">
+                                                                    <img src="./sass/images/nuoc hoa versace.jpg"width="180px"height="180px" alt="" class="home-ppproduct-item-img">
+                                                                    <h4 class="home-product-item-name">Nước hoa versace  </h4>
+                                                                    <div class="home-product-item-gia">
+                                                                            <span class="home-product-item-giacu">850 000đ</span>
+                                                                            <span class="home-product-item-giamoi">765 000đ</span>
+                                                                    </div>
+                                                                    <div class="home-product-item-action">
+                                                                            <span class="home-product-item-like">
+                                                                                <img src="./sass/images/heart.png"width="10px">
+                                                                            </span>
+                                                                            <div class="home-product-item-rating">
+                                                                                <img src="./sass/images/star.png"width="10px">
+                                                                                <img src="./sass/images/star.png"width="10px">
+                                                                                <img src="./sass/images/star.png"width="10px">
+                                                                                <img src="./sass/images/star.png"width="10px">
+                                                                                <img src="./sass/images/star.png"width="10px">
+                                                                            </div>
+                            
+                                                                    </div>
+                                                                    <div class="home-product-item-hold">
+                                                                            
+                                                                            <span class="home-product-item-hieu">Versace</span>
+                                                                            
+                                                                            <span class="home-product-item-hieu">France</span>
+                                                                            
+                                                                    </div>
+                                                                    <div class="sale-all">
+                                                                            <div class="home-product-item-favo">
+                                                                                   Yêu thích
+                                                                            </div>
+                                                                            <div class="home-product-item-sale">
+                                                                                 <span class="giam">10%</span>
+                                                                                  <span class="giam2">GIẢM</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                    </a>
+                                    <a href="" class="product-link">
+                                                                <div class="grid-colum-2-4">
+                               
+                                                                    <div class="home-product-item">
+                                                                        <img src="./sass/images/loa bluetooth.jpg"width="180px"height="180px" alt="" class="home-ppproduct-item-img">
+                                                                        <h4 class="home-product-item-name">Loa bluetooth có đèn </h4>
+                                                                        <div class="home-product-item-gia">
+                                                                                <span class="home-product-item-giacu">390 000đ</span>
+                                                                                <span class="home-product-item-giamoi">351 000đ</span>
+                                                                        </div>
+                                                                        <div class="home-product-item-action">
+                                                                                <span class="home-product-item-like">
+                                                                                    <img src="./sass/images/heart.png"width="10px">
+                                                                                </span>
+                                                                                <div class="home-product-item-rating">
+                                                                                    <img src="./sass/images/star.png"width="10px">
+                                                                                    <img src="./sass/images/star.png"width="10px">
+                                                                                    <img src="./sass/images/star.png"width="10px">
+                                                                                    <img src="./sass/images/star.png"width="10px">
+                                                                                    <img src="./sass/images/star.png"width="10px">
+                                                                                </div>
+                                
+                                                                        </div>
+                                                                        <div class="home-product-item-hold">
+                                                                                
+                                                                                <span class="home-product-item-hieu">Sony</span>
+                                                                                
+                                                                                <span class="home-product-item-hieu">Japan</span>
+                                                                                
+                                                                        </div>
+                                                                        <div class="sale-all">
+                                                                                <div class="home-product-item-favo">
+                                                                                       Yêu thích
+                                                                                </div>
+                                                                                <div class="home-product-item-sale">
+                                                                                     <span class="giam">10%</span>
+                                                                                      <span class="giam2">GIẢM</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                    </a>
+                                    <a href="" class="product-link">
+                                                                     <div class="grid-colum-2-4">
+                               
+                                                                        <div class="home-product-item">
+                                                                            <img src="./sass/images/bo noi chao chong dich.jpg"width="180px"height="180px" alt="" class="home-ppproduct-item-img">
+                                                                            <h4 class="home-product-item-name">Bộ nồi chảo   </h4>
+                                                                            <div class="home-product-item-gia">
+                                                                                    <span class="home-product-item-giacu">400 000đ</span>
+                                                                                    <span class="home-product-item-giamoi">360 000đ</span>
+                                                                            </div>
+                                                                            <div class="home-product-item-action">
+                                                                                    <span class="home-product-item-like">
+                                                                                        <img src="./sass/images/heart.png"width="10px">
+                                                                                    </span>
+                                                                                    <div class="home-product-item-rating">
+                                                                                        <img src="./sass/images/star.png"width="10px">
+                                                                                        <img src="./sass/images/star.png"width="10px">
+                                                                                        <img src="./sass/images/star.png"width="10px">
+                                                                                        <img src="./sass/images/star.png"width="10px">
+                                                                                        <img src="./sass/images/star.png"width="10px">
+                                                                                    </div>
+                                    
+                                                                            </div>
+                                                                            <div class="home-product-item-hold">
+                                                                                    
+                                                                                    <span class="home-product-item-hieu">Sunhouse</span>
+                                                                                    
+                                                                                    <span class="home-product-item-hieu">Korea</span>
+                                                                                    
+                                                                            </div>
+                                                                            <div class="sale-all">
+                                                                                    <div class="home-product-item-favo">
+                                                                                           Yêu thích
+                                                                                    </div>
+                                                                                    <div class="home-product-item-sale">
+                                                                                         <span class="giam">10%</span>
+                                                                                          <span class="giam2">GIẢM</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                    </a>
+                                </div>
+                           </div>
+                                        
+                                      
+                                            
+                           
+                    </div>         
+                                    
+                              
+                    
+                    
+                    
+                    
+                </div>
+                        
+            </div>
+                                    
+                            <ul class="pagewed home-product-pagewed">
+                                <li class="pagewed-item">
+                                    <a href="" class="pagewed-item-link">
+                                        <img src="./sass/images/button-left.png"width="10px" alt="" class="pagewed-item-left">
+                                    </a>
+                                   
+                                </li>
+                                <li class="pagewed-item pagewed-item-1">
+                                    <a href="" class="pagewed-item-link">
+                                        1
+                                    </a>
+                                   
+                                </li>
+                                <li class="pagewed-item">
+                                    <a href="" class="pagewed-item-link">
+                                      2
+                                    </a>
+                                   
+                                </li>
+                                <li class="pagewed-item">
+                                    <a href="" class="pagewed-item-link">
+                                      3
+                                    </a>
+                                   
+                                </li>
+                                <li class="pagewed-item">
+                                    <a href="" class="pagewed-item-link">
+                                      4
+                                    </a>
+                                   
+                                </li>
+                                <li class="pagewed-item">
+                                    <a href="" class="pagewed-item-link">
+                                      5
+                                    </a>
+                                   
+                                </li>
+                                <li class="pagewed-item">
+                                    <a href="" class="pagewed-item-link">
+                                      ...
+                                    </a>
+                                   
+                                </li>
+                                <li class="pagewed-item">
+                                    <a href="" class="pagewed-item-link">
+                                      14
+                                    </a>
+                                   
+                                </li>
+                                <li class="pagewed-item">
+                                    <a href="" class="pagewed-item-link">
+                                        <img src="./sass/images/button-right.png"width="10px" alt="" class="pagewed-item-right">
+                                    </a>
+                                   
+                                </li>
+                            </ul>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                           
+
+                            
+                            
+                            
+                           
+
+
+
+                           </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="grid footer-border">
+                <div class="grid-row ">
+                    <div class="grid-colum-2 ">
+                      <h3 class="footer-heading">Chăm sóc khách hàng</h3>
+                      <ul class="footer-list">
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">Trung tâm trợ giúp</a>
+                        </li>
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">Red-White-Shop Mall</a>
+                        </li>
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">Hướng dẫn mua hàng</a>
+
+                        </li>
+                      </ul>
+                    </div>  
+                    <div class="grid-colum-2">
+                       <h3 class="footer-heading">Giới thiệu</h3>
+                       <ul class="footer-list">
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">Giới thiệu</a>
+                        </li>
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">Tuyển dụng</a>
+                        </li>
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">Điều khoản</a>
+
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="grid-colum-2">
+                    <h3 class="footer-heading">Danh mục</h3>
+                    <ul class="footer-list">
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">Trung tâm trợ giúp</a>
+                        </li>
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">Red-White-Shop Mall</a>
+                        </li>
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">Hướng dẫn mua hàng</a>
+
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="grid-colum-2">
+                    <h3 class="footer-heading">Theo dõi chúng tôi</h3>
+                    <ul class="footer-list">
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">
+                                <img src="./sass/images/logo face.png"class="face"width="20px">
+                                Facebook</a>
+                        </li>
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">
+                                <img src="./sass/images/logo intagram.jpg"class="inta"width="20px">
+                                Intagram</a>
+                        </li>
+                        <li class="footer-item">
+                             <a href="" class="footer-item-link">
+                                <img src="./sass/images/icon linkedin.png"class="linkedin"width="20px">
+                                Linkedin</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="grid-colum-2">
+                    <h3 class="footer-heading">Vào cửa hàng trên ứng dụng</h3>
+                    <ul class="footer-list">
+                        <div class="footer-qr">
+                            <img src="./sass/images/qr shopee.png" alt="" class="header-qr-img">
+                            <div class="footer-qr-app">
+                                <img src="./sass/images/google play.png" alt="" class="header-qr-dl"width="80px">
+                                <img src="./sass/images/appstore.png" alt="" class="header-qr-dl"width="80px">
+                            </div>
+                        </div>
+                    </ul>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    
+        
+    
+    </div>
+    
+</body>
+</html>
